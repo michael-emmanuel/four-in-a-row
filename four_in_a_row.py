@@ -45,4 +45,18 @@ def main():
     playerMove = getPlayerMove(playerTurn, gameBoard)
     gameBoard[playerMove] = playerTurn
 
-    # TODO: Check for a win or tie
+    # Check for a win or tie
+    if isWinner(playerTurn, gameBoard):
+        displayBoard(gameBoard)  # Display the board one last time.
+        print("Player {} has won!".format(playerTurn))
+        sys.exit()
+    elif isFull(gameBoard):
+        displayBoard(gameBoard)  # Display the board one last time.
+        print("There is a tie!")
+        sys.exit()
+
+    # Switch turns to other player:
+    if playerTurn == PLAYER_X:
+        playerTurn = PLAYER_O
+    elif playerTurn == PLAYER_O:
+        playerTurn = PLAYER_X
